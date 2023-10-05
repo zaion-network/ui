@@ -1,3 +1,6 @@
+/// <reference lib="dom" />
+/// <reference lib="dom.iterable" />
+
 import { requestProvider, WebLNProvider } from "webln";
 import { UserAgent as UA } from "./UserAgent";
 import type { UIDesign } from "./UIDesign";
