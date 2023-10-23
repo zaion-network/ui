@@ -9,8 +9,12 @@
   "scripts": {
     "build": "./build.ts"
   },
+  "dependencies": {
+    "page": "^1.11.6"
+  },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "@types/page": "^1.11.8"
   },
   "peerDependencies": {
     "typescript": "5.2.2"
