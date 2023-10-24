@@ -44,6 +44,9 @@ export class Pager implements iPager {
     page(route, callback);
     return this;
   }
+  resolve() {
+    page();
+  }
   /**
    * Crea una callback partendo da un route e un contenuto html
    * Esempio
