@@ -4,6 +4,7 @@
 import { requestProvider, WebLNProvider } from "webln";
 import { UserAgent as UA } from "./UserAgent";
 import type { UIDesign } from "./UIDesign";
+import { tempoTrascorso as tt } from "./utils/tempoTrascorso";
 
 declare module "./App" {
   interface GenericCallback<T, E, R> {
@@ -54,6 +55,10 @@ export class App implements App {
       "change",
       mkcb(App.events.minWidth768Change)
     );
+    this.maxWidth320Query.addEventListener(
+      "change",
+      mkcb(App.events.maxWidth320Change)
+    );
   }
   get themeQuery(): MediaQueryList {
     return App.getThemeQuery(this.value.window);
@@ -63,6 +68,9 @@ export class App implements App {
   }
   get minWidth768Query(): MediaQueryList {
     return App.getMinWith768(this.value.window);
+  }
+  get maxWidth320Query(): MediaQueryList {
+    return App.getMaxWidth320(this.value.window);
   }
   makeEmitCb = (type: App.events) => (data: MediaQueryListEvent | Event) =>
     this.emit(type, data);
@@ -175,6 +183,7 @@ export namespace App {
     themeChange = "themeChange",
     orientationChange = "orientationChange",
     minWidth768Change = "minWidth768Change",
+    maxWidth320Change = "maxWidth320Change",
     requestedProvider = "requestedProvider",
     relaymessage = "relaymessage",
   }
@@ -184,6 +193,8 @@ export namespace App {
     checkMediaQuery(window)("(orientation: landscape)");
   export const getMinWith768 = (window: Window) =>
     checkMediaQuery(window)("(min-width: 768px)");
+  export const getMaxWidth320 = (window: Window) =>
+    checkMediaQuery(window)("(max-width: 320px)");
 
   const checkMediaQuery = (window: Window) => (string: string) =>
     window.matchMedia(string);
@@ -193,4 +204,5 @@ export namespace App {
   }
 
   export const UserAgent = UA;
+  export const tempoTrascorso = tt;
 }
