@@ -59,6 +59,10 @@ export class App implements App {
       "change",
       mkcb(App.events.maxWidth320Change)
     );
+    this.maxWidth420Query.addEventListener(
+      "change",
+      mkcb(App.events.maxWidth420Change)
+    );
   }
   get themeQuery(): MediaQueryList {
     return App.getThemeQuery(this.value.window);
@@ -71,6 +75,9 @@ export class App implements App {
   }
   get maxWidth320Query(): MediaQueryList {
     return App.getMaxWidth320(this.value.window);
+  }
+  get maxWidth420Query(): MediaQueryList {
+    return App.getMaxWidth420(this.value.window);
   }
   makeEmitCb = (type: App.events) => (data: MediaQueryListEvent | Event) =>
     this.emit(type, data);
@@ -184,6 +191,7 @@ export namespace App {
     orientationChange = "orientationChange",
     minWidth768Change = "minWidth768Change",
     maxWidth320Change = "maxWidth320Change",
+    maxWidth420Change = "maxWidth420Change",
     requestedProvider = "requestedProvider",
     relaymessage = "relaymessage",
   }
@@ -195,6 +203,8 @@ export namespace App {
     checkMediaQuery(window)("(min-width: 768px)");
   export const getMaxWidth320 = (window: Window) =>
     checkMediaQuery(window)("(max-width: 320px)");
+  export const getMaxWidth420 = (window: Window) =>
+    checkMediaQuery(window)("(max-width: 420px)");
 
   const checkMediaQuery = (window: Window) => (string: string) =>
     window.matchMedia(string);
