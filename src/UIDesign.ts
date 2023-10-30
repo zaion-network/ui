@@ -56,6 +56,9 @@ export class UIDesign implements UIDesign {
     UIDesign.setInnerText(text)(this.element);
     return this;
   }
+  setTextContent(text: string) {
+    UIDesign.setInnerText(text)(this.element);
+  }
   setHtmlAttribute(attribute: string, value: string) {
     UIDesign.setHtmlAttribute(attribute)(value)(this.element);
     return this;
@@ -108,6 +111,9 @@ export namespace UIDesign {
   export const setInnerText = (text: string) => (e: HTMLElement) => {
     e.innerText = text;
     return e;
+  };
+  export const setTextContent = (text: string) => (e: HTMLElement) => {
+    e.textContent = text;
   };
   export const setHtmlAttribute =
     (attribute: string) => (value: string) => (el: HTMLElement) => {
