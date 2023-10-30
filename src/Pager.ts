@@ -30,14 +30,15 @@ export interface Pager {
   // callbackMaker(page: string, htmlContent: string): void;
 }
 export class Pager implements iPager {
-  constructor(options: { parser: DOMParser }) {
+  constructor(options: { parser: DOMParser; baseElementId?: string }) {
     this.parser = options.parser;
     this.stringToJsHtml = stringToJsHtmlConfigurator(this.parser);
     this.updateElement = updateElementConfigurator(
       this.parser,
       attach,
       deleteContent,
-      stringToJsHtmlConfigurator
+      stringToJsHtmlConfigurator,
+      options.baseElementId
     );
   }
   route(route: string, callback: PageJS.Callback) {
