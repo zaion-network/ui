@@ -59,6 +59,13 @@ export class UIDesign implements UIDesign {
   setTextContent(text: string) {
     UIDesign.setInnerText(text)(this.element);
   }
+  setEventListener<K extends keyof HTMLElementEventMap>(
+    event: K,
+    cb: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
+  ): this {
+    UIDesign.setEventListener(event, cb);
+    return this;
+  }
   setHtmlAttribute(attribute: string, value: string) {
     UIDesign.setHtmlAttribute(attribute)(value)(this.element);
     return this;
@@ -115,6 +122,14 @@ export namespace UIDesign {
   export const setTextContent = (text: string) => (e: HTMLElement) => {
     e.textContent = text;
   };
+  export const setEventListener =
+    <K extends keyof HTMLElementEventMap>(
+      event: K,
+      cb: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
+    ) =>
+    (e: HTMLElement) => {
+      e.addEventListener(event, cb);
+    };
   export const setHtmlAttribute =
     (attribute: string) => (value: string) => (el: HTMLElement) => {
       el.setAttribute(attribute, value);
