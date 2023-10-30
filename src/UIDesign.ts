@@ -58,6 +58,7 @@ export class UIDesign implements UIDesign {
   }
   setTextContent(text: string) {
     UIDesign.setInnerText(text)(this.element);
+    return this;
   }
   setEventListener<K extends keyof HTMLElementEventMap>(
     event: K,
