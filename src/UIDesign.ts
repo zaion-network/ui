@@ -64,7 +64,7 @@ export class UIDesign implements UIDesign {
     event: K,
     cb: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any
   ): this {
-    UIDesign.setEventListener(event, cb);
+    UIDesign.setEventListener(event, cb)(this.element);
     return this;
   }
   setHtmlAttribute(attribute: string, value: string) {
