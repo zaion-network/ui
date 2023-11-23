@@ -206,6 +206,22 @@ export namespace App {
   export const getMaxWidth420 = (window: Window) =>
     checkMediaQuery(window)("(max-width: 420px)");
 
+  class MediaQueryManager {
+    static THEME = "(prefers-color-scheme: dark)";
+    static ORIENTATION = "(orientation: landscape)";
+    static MIN_W = (amount: number) => `(min-width: ${amount}px)`;
+    static MAX_W = (amount: number) => `(max-width: ${amount}px)`;
+    constructor(public window: Window) {}
+    #configure = (string: string) => {
+      return this.window.matchMedia(string);
+    };
+    theme = this.#configure(MediaQueryManager.THEME);
+    orientation = this.#configure(MediaQueryManager.ORIENTATION);
+    minWidth768 = this.#configure(MediaQueryManager.MIN_W(768));
+    maxWidth320 = this.#configure(MediaQueryManager.MAX_W(320));
+    maxWidth420 = this.#configure(MediaQueryManager.MAX_W(420));
+  }
+
   const checkMediaQuery = (window: Window) => (string: string) =>
     window.matchMedia(string);
 
